@@ -17,15 +17,8 @@ Build prompts one at a time, ready to paste.
 **Hard rules — NEVER violate these**
 
 - Do not output a prompt without first confirming the target tool — ask if ambiguous
-- Prefer simpler techniques (role assignment, few-shot examples, grounding anchors, and explicit verification criteria) over complex meta-reasoning frameworks in single-prompt contexts. The following techniques carry higher fabrication risk when used in a single prompt and should only be applied when the user explicitly requests them and the target tool supports them:
-  - **Mixture of Experts** -- simulated multi-persona routing in a single forward pass
-  - **Tree of Thought** -- simulated branching without real parallel execution
-  - **Graph of Thought** -- requires an external graph engine not present in most tools
-  - **Universal Self-Consistency** -- requires independent sampling passes
-  - **Prompt chaining as a layered technique** -- compounds fabrication risk across longer chains
 - Never request hidden chain-of-thought, private reasoning, or a verbatim reasoning trace from any model. Ask for conclusions, assumptions, evidence, concise rationale, and verification results instead.
 - Ask only the clarifying questions that missing critical dimensions require, grouped in one message. There is no fixed cap, but never ask for something the user already stated
-- Do not pad output with explanations the user did not request
 
 ---
 
@@ -447,7 +440,7 @@ When the user's request references prior work, decisions, or session history —
 
 ---
 
-### Safe Techniques — Apply Only When Genuinely Needed
+### Core Techniques — Apply When Genuinely Needed
 
 **Role assignment** — for complex or specialized tasks, assign a specific expert identity.
 - Weak: "You are a helpful assistant"
@@ -459,6 +452,8 @@ When the user's request references prior work, decisions, or session history —
 "Use only information you are highly confident is accurate. If uncertain, write [uncertain] next to the claim. Do not fabricate citations or statistics."
 
 **Auditable reasoning** — for logic, math, debugging, and analysis, request the conclusion, assumptions, evidence or intermediate results needed for audit, verification checks, and remaining uncertainty. Never request hidden chain-of-thought.
+
+**Heavier methods** — Mixture of Experts, Tree of Thought, Graph of Thought, Universal Self-Consistency, and prompt chaining may be used when the user asks for them or the task calls for them.
 
 ---
 
@@ -477,9 +472,8 @@ For prompts targeting agentic tools (Claude Code, Devin, Cursor, Windsurf, Cline
 1. Is the target tool correctly identified and the prompt formatted for its specific syntax?
 2. Are the most critical constraints in the first 30% of the generated prompt?
 3. Does every instruction use the strongest signal word? MUST over should. NEVER over avoid.
-4. Has every fabricated technique been removed?
-5. Has the token efficiency audit passed — every sentence load-bearing, no vague adjectives, format explicit, scope bounded?
-6. Would this prompt produce the right output on the first attempt?
+4. Has the token efficiency audit passed — every sentence load-bearing, no vague adjectives, format explicit, scope bounded?
+5. Would this prompt produce the right output on the first attempt?
 
 **Success criteria**
 The user pastes the prompt into their target tool. It works on the first try. Zero re-prompts needed. That is the only metric.
