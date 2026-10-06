@@ -83,8 +83,8 @@ Prompt Master runs a structured pipeline on every request:
 
 1. **Detects the target tool** — figures out which AI system the prompt is for and routes silently to the right approach
 2. **Extracts 9 dimensions of intent** — task, input, output, constraints, context, audience, memory, success criteria, examples
-3. **Asks targeted clarifying questions** — max 3 questions if critical info is missing, never more
-4. **Routes to the right framework** — picks and applies the correct prompt architecture automatically, never shown to the user
+3. **Asks targeted clarifying questions** — only what missing critical info requires, grouped in one message, no fixed cap
+4. **Routes to the right framework** — picks and applies the correct prompt architecture automatically
 5. **Applies safe techniques only** — role assignment, few-shot examples, XML structure, grounding anchors, memory block as needed
 6. **Checks model recency** — verifies exact models and controls against official provider docs when the request depends on "latest"
 7. **Runs a token efficiency audit** — strips every word that doesn't change the output
@@ -245,7 +245,7 @@ Prompt Master includes specific profiles for 20+ tools. For anything not on the 
 
 ## 📐 13 Prompt Templates (Auto-Selected)
 
-Prompt Master picks the right architecture for every task automatically and routes silently — you never see the framework name, just the prompt.
+Prompt Master picks the right architecture for every task automatically.
 
 <details>
 <summary><h3> Click to view all 13 templates</h3></summary>
