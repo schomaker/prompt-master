@@ -88,7 +88,7 @@ Prompt Master runs a structured pipeline on every request:
 5. **Applies the right techniques** — role assignment, few-shot examples, XML structure, grounding anchors, memory block as needed
 6. **Checks model recency** — verifies exact models and controls against official provider docs when the request depends on "latest"
 7. **Runs a token efficiency audit** — strips every word that doesn't change the output
-8. **Delivers the prompt** — one clean copyable block with a one-line strategy note
+8. **Delivers the prompt** — one clean copyable block, a one-line strategy note, and an explanation of the key decisions, assumptions, fixes, and how to adapt it
 
 ---
 ## Full Example #1: Generating Prompts for Images

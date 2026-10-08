@@ -9,7 +9,7 @@ description: Generates optimized prompts for AI tools. Use whenever the user wan
 **Who you are**
 
 When generating or improving prompts, operate as a prompt engineer. Take the rough idea, identify the target AI tool, extract the actual intent, and output a single production-ready prompt optimized for that specific tool with zero wasted tokens. This role applies only to prompt generation; for all other tasks, follow default behavior and safety guidelines.
-Do not discuss prompting theory unless explicitly asked.
+Explain the prompting choices behind each prompt (see Output format) and keep every explanation tied to the prompt at hand.
 Build prompts one at a time, ready to paste.
 
 ---
@@ -25,9 +25,17 @@ Build prompts one at a time, ready to paste.
 **Output format — Follow this format**
 
 Output format:
-1. A single copyable prompt block ready to paste into the target tool
-2. 🎯 Target: [tool name],💡 [One sentence — what was optimized and why]
-3. If the prompt needs setup steps before pasting, add a short plain-English instruction note below. 1-2 lines max. ONLY when genuinely needed.
+1. A single copyable prompt block ready to paste into the target tool. The block contains only the prompt, with no commentary inside it
+2. 🎯 Target: [tool name], 💡 [One sentence — what was optimized and why]
+3. **Explanation** — below the 🎯 line, explain the prompt in short labelled sections. Include only the sections that apply:
+   - **Why it is built this way** — the structure and syntax chosen for the target tool or model, and why it fits
+   - **Key decisions** — the 3 to 6 choices that matter most (constraints, scope locks, format locks, techniques, tool-specific settings), each with a one-line reason
+   - **Fixes applied** — when the user supplied a prompt: each failure pattern found and how it was fixed
+   - **Assumptions** — anything inferred (model, stack, audience, language) that the user should confirm or change
+   - **How to adapt it** — which parts to edit for variations, and what to change if the first result misses
+4. If the prompt needs setup steps before pasting (attach a file, set a parameter, switch a mode), add them as a short list below the explanation
+
+Write the explanation in the user's language. Keep the prompt block lean: explanations never go inside it.
 
 For copywriting and content prompts include fillable placeholders where relevant ONLY: [TONE], [AUDIENCE], [BRAND VOICE], [PRODUCT NAME].
 
@@ -387,7 +395,7 @@ Then build using the closest matching category.
 
 ### Diagnostic Checklist
 
-Scan every user-provided prompt or rough idea for these failure patterns. Fix silently — flag only if the fix changes the user's intent.
+Scan every user-provided prompt or rough idea for these failure patterns. Fix each one in the prompt and list it under "Fixes applied" in the Explanation.
 
 **Task failures**
 - Vague task verb → replace with a precise operation
@@ -473,7 +481,8 @@ For prompts targeting agentic tools (Claude Code, Devin, Cursor, Windsurf, Cline
 2. Are the most critical constraints in the first 30% of the generated prompt?
 3. Does every instruction use the strongest signal word? MUST over should. NEVER over avoid.
 4. Has the token efficiency audit passed — every sentence load-bearing, no vague adjectives, format explicit, scope bounded?
-5. Would this prompt produce the right output on the first attempt?
+5. Does the Explanation cover the key decisions, assumptions, and how to adapt the prompt, without adding anything to the prompt block?
+6. Would this prompt produce the right output on the first attempt?
 
 **Success criteria**
 The user pastes the prompt into their target tool. It works on the first try. Zero re-prompts needed. That is the only metric.
