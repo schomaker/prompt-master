@@ -1,0 +1,3 @@
+# Keep repo tooling out of source archives (ZIP downloads, git archive)
+.claude export-ignore
+.gitattributes export-ignore
