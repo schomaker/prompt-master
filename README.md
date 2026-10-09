@@ -16,12 +16,26 @@ A Claude skill that writes the accurate prompts for any AI tool. Zero tokens or 
 2. Go to **claude.ai → Sidebar → Customize → Skills → Upload a Skill**
 
 
-### OR Clone directly into Claude Code skills directory (Not Suggested)
+### OR Claude Code — install for all your projects
+
+macOS / Linux:
 
 ```bash
 mkdir -p ~/.claude/skills
-git clone https://github.com/nidhinjs/prompt-master.git ~/.claude/skills/prompt-master
+git clone https://github.com/schomaker/prompt-master.git ~/.claude/skills/prompt-master
 ```
+
+Windows (PowerShell):
+
+```powershell
+git clone https://github.com/schomaker/prompt-master.git $HOME\.claude\skills\prompt-master
+```
+
+Then start a new Claude Code session. `SKILL.md` must sit directly in `~/.claude/skills/prompt-master/`, not in a nested folder. Update later with `git -C ~/.claude/skills/prompt-master pull`.
+
+### Claude Code inside this repo — nothing to install
+
+Sessions started in a clone of this repo, including cloud sessions, load the skill automatically from `.claude/skills/prompt-master`.
 
 ## 🔥 The Problem This Solves
 
